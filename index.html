@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Assignment 5 by David Jaqua</title>
+<style>
+body{
+	background-color: black;
+	color: white;
+}
+</style>
+<script>
+function calcCircleArea(){
+	var radius = document.getElementById('circleRadius').value;
+	// check if null or whitespace
+	if (radius == null
+		|| radius.trim() === ""){
+			fieldError();
+			return;
+	}
+	radius = radius.trim(); // get value trimmed of whitespace
+	if (containsChars(radius) == true){
+		typeError();
+		return;
+	}
+	var area = Math.PI*Math.pow(radius, 2); // calculate area
+	document.getElementById('circleArea').value = area;
+}
+
+function calcSquareArea(){
+	var length = document.getElementById('squareLength').value;
+	// check if null or whitespace
+	if (length == null
+		|| length.trim() === ""){
+			fieldError();
+			return;
+	}
+	length = length.trim(); // get value trimmed of whitespace
+	if (containsChars(length) == true){
+		typeError();
+		return;
+	}
+	var area = Math.pow(length, 2); // calculate area
+	document.getElementById('squareArea').value = area;
+}
+
+function calcRectangleArea(){
+	var length = document.getElementById('rectangleLength').value;
+	var width = document.getElementById('rectangleWidth').value;
+	// check if null or whitespace
+	if (length == null
+		|| width == null
+		|| length.trim() === ""
+		|| width.trim() === ""){
+			fieldError();
+			return;
+	}
+	length = length.trim(); // get value trimmed of whitespace
+	width = width.trim(); // get value trimmed of whitespace
+	if (containsChars(length) == true
+		|| containsChars(width) == true){
+		typeError();
+		return;
+	}
+	var area = length*width; // calculate area
+	document.getElementById('rectangleArea').value = area;
+}
+
+function containsChars(string){
+	// test if the string contains letters
+	var expression = /[A-z]/g;
+	return expression.test(string);
+}
+
+function fieldError(){
+	alert("One or more fields was not entered!");
+}
+
+function typeError(){
+	alert("Invalid information type entered! Must only contain digits!");
+}
+</script>
+</head>
+<body>
+
+<fieldset style="width:500px">
+Input radius to calculate the area of a circle.<br>
+<br>
+Radius<br>
+<input type="text" id="circleRadius"><br>
+Area<br>
+<input type="text" disabled="disabled" id="circleArea" value="0"><br>
+<input type="submit" value="Calculate" onclick="calcCircleArea();"><br>
+</fieldset>
+<br>
+<br>
+
+<fieldset style="width:500px">
+Input length to calculate the area of a square.<br>
+<br>
+Length<br>
+<input type="text" id="squareLength"><br>
+Area<br>
+<input type="text" disabled="disabled" id="squareArea" value="0"><br>
+<input type="submit" value="Calculate" onclick="calcSquareArea();"><br>
+</fieldset>
+<br>
+<br>
+
+<fieldset style="width:500px">
+Input length and switch to calculate the area of a rectangle.<br>
+<br>
+Length<br>
+<input type="text" id="rectangleLength"><br>
+Width<br>
+<input type="text" id="rectangleWidth"><br>
+Area<br>
+<input type="text" disabled="disabled" id="rectangleArea" value="0"><br>
+<input type="submit" value="Calculate" onclick="calcRectangleArea();"><br>
+</fieldset>
+
+</body>
+</html>
